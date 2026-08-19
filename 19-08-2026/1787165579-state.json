@@ -19,14 +19,14 @@
     "spa_plot_minimum": 0,
     "spa_plot_maximum": 1500,
     "spa_ylabel": "Noise Power [pW]",
-    "s_parameter_select": "s13",
+    "s_parameter_select": "s22",
     "measurement_select": "vna",
     "twpa_pump_select": "twpa_pump_1",
     "programmable_attenuator": 0,
     "temperature": 46.01739,
     "date": "19-08-2026",
-    "time": "12:40:05",
-    "timestamp": 1787164805,
+    "time": "12:52:59",
+    "timestamp": 1787165579,
     "data_repository": "https://github.com/lafefspietz/jpa-twpa-qubit-noise-summer-2026/",
     "data_url_base": "https://raw.githubusercontent.com/lafefspietz/jpa-twpa-qubit-noise-summer-2026/refs/heads/main/",
     "take_trace": true,
@@ -44,6 +44,6 @@
         "voltage": 0
     },
     "timezone": "Mountain Daylight Time",
-    "file_name": "1787164805-state.json",
-    "state_file_url": "https://raw.githubusercontent.com/lafefspietz/jpa-twpa-qubit-noise-summer-2026/refs/heads/main/19-08-2026/1787164805-state.json"
+    "file_name": "1787165579-state.json",
+    "state_file_url": "https://raw.githubusercontent.com/lafefspietz/jpa-twpa-qubit-noise-summer-2026/refs/heads/main/19-08-2026/1787165579-state.json"
 }
