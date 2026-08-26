@@ -4,7 +4,7 @@ import time
 import websockets
 import copy
 from urllib.request import urlopen
-import hid
+
 import serial
 import serial.tools.list_ports
 from windfreak import SynthHD
@@ -15,7 +15,6 @@ import numpy as np
 import pyvisa
 from pathlib import Path
 from datetime import datetime
-
 
 
 WARM_SWITCHES_1_IP_ADDRESS = '169.254.10.10'

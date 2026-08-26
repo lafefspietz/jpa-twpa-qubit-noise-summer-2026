@@ -1,0 +1,11 @@
+{
+    "yoko_units": "volts",
+    "yoko_level": 0.123,
+    "yoko_on": true,
+    "jpa_pump_frequency": 13000000000.0,
+    "jpa_pump_power": -20.0,
+    "jpa_pump_on": true,
+    "twpa_pump_frequency": 8750000000.0,
+    "twpa_pump_power": -25.0,
+    "twpa_pump_on": true
+}
