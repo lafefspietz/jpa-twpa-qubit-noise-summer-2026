@@ -1,0 +1,41 @@
+{   
+    "analyzer": {
+        "vna_source_power": -30,
+        "vna_if_bandwidth": 10000,
+        "vna_start_frequency": 4000000000,
+        "vna_stop_frequency": 8000000000,
+        "vna_number_of_points": 1001,
+        "spa_resolution_bandwidth": 1000000,
+        "spa_video_bandwidth": 10000,
+        "spa_start_frequency": 4000000000,
+        "spa_stop_frequency": 8000000000,
+        "spa_number_of_points": 1001
+  },   
+    "s_parameter_select": {
+        "state": "s11",
+        "options": [
+            {"key": "s11", "text": "s11"},
+            {"key": "s22", "text": "s22"},
+            {"key": "s13", "text": "s13"},
+            {"key": "s24", "text": "s24"}
+        ]
+    },
+    "measurement_select": {
+        "state": "vna",
+        "options": [
+            {"key": "vna", "text": "vna"},
+            {"key": "spectrum_analyzer_fridge", "text": "spectrum_analyzer_fridge"},
+            {"key": "spectrum_analyzer_diode", "text": "spectrum_analyzer_diode"}
+        ]
+    },
+    "twpa_pump_select": {
+        "state": "twpa_pump_1",
+        "options": [
+            {"key": "twpa_pump_1", "text": "twpa_pump_1"},
+            {"key": "twpa_pump_2", "text": "twpa_pump_2"}
+        ]
+    },
+    "programmable_attenuator": {
+        "value": 0
+    }
+}
