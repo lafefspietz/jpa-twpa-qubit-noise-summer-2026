@@ -1,9 +1,8 @@
-const debug_mode = false;//set to false to send data over socket
-
+const debug_mode = true;//set to false to send data over socket
 let socket = null;
 
 if (!debug_mode) {
-  socket = new WebSocket('ws://localhost:8081');
+  socket = new WebSocket('ws://localhost:8080');
 }
 
 knobs = [];
@@ -38,22 +37,12 @@ jpa_flux_bias = jpa_flux_bias_0;//volts
 twpa_pump_frequency = twpa_pump_frequency_0;
 twpa_pump_power = twpa_pump_power_0;//dBm
 
-jpa_pump_on = true;
-jpa_flux_bias_on = true;
-twpa_pump_on = true;
-
 amplifier_state = {};
-
 amplifier_state.jpa_pump_frequency = jpa_pump_frequency;
 amplifier_state.jpa_pump_power = jpa_pump_power;
 amplifier_state.jpa_flux_bias = jpa_flux_bias;
 amplifier_state.twpa_pump_frequency = twpa_pump_frequency;
 amplifier_state.twpa_pump_power = twpa_pump_power;
-
-amplifier_state.jpa_pump_on = jpa_pump_on;
-amplifier_state.jpa_flux_bias_on = jpa_flux_bias_on;
-amplifier_state.twpa_pump_on = twpa_pump_on;
-
 
 fetch('load-file.php?filename=knobs.json')
   .then(response => response.text())
@@ -75,9 +64,6 @@ fetch('load-file.php?filename=amplifier_state.json')
     twpa_pump_frequency_0 = saved_state.twpa_pump_frequency;
     twpa_pump_power_0 = saved_state.twpa_pump_power;
 
-    amplifier_state.jpa_pump_on = saved_state.jpa_pump_on;
-    amplifier_state.jpa_flux_bias_on = saved_state.jpa_flux_bias_on;
-    amplifier_state.twpa_pump_on = saved_state.jpa_flux_bias_on; 
 
     jpa_pump_frequency = jpa_pump_frequency_0;
     jpa_pump_power = jpa_pump_power_0;//dBm
@@ -139,29 +125,14 @@ function draw() {
         }
     }    
     text("f_jpa = " + (jpa_pump_frequency/1e9).toFixed(3) + " GHz", 0.5*width +  10,height- 60);
-    text("p_jpa = " + (jpa_pump_power).toFixed(3) + " dBm",0.5*width +  10,height- 40);
-    text("flux_jpa = " + (jpa_flux_bias).toFixed(3) + " V",0.5*width +  10,height- 20);
-
+    
     text("f_twpa = " + (twpa_pump_frequency/1e9).toFixed(3) + " GHz", 0.5*width +  10,height- 120);
     text("p_twpa = " + (twpa_pump_power).toFixed(3) + " dBm", 0.5*width +  10,height- 100);
-    if(amplifier_state.twpa_pump_on){
-        text("twpa pump on", width -  200,height- 120);
-    }
-    else{
-        text("twpa pump off", width -  200,height- 120);
-    }
-    if(amplifier_state.jpa_pump_on){
-        text("jpa pump on", width -  200,height - 60);
-    }
-    else{
-        text("jpa pump off", width -  200,height- 60);
-    }
-    if(amplifier_state.jpa_flux_bias_on){
-        text("jpa flux on", width -  200,height - 20);
-    }
-    else{
-        text("jpa flux off", width -  200,height- 20);
-    }
+
+    
+    text("p_jpa = " + (jpa_pump_power).toFixed(3) + " dBm",0.5*width +  10,height- 40);
+    text("flux_jpa = " + (jpa_flux_bias).toFixed(3) + " V",0.5*width +  10,height- 20);
+    
     textFont('Arial');
     textSize(20);
     text("JPA",20,20);
@@ -174,32 +145,6 @@ function draw() {
     //rect(width-5,5,- height - 5,0.7*height-10);
 
 }
-
-        //  <td id = "jpa-pump-button">JPA PUMP ON/OFF</td>
-         // <td id = "jpa-flux-button">JPA FLUX ON/OFF</td>
-         // <td id = "twpa-pump-button">TWPA PUMP ON/OFF</t
-          
-document.getElementById("jpa-pump-button").onclick = function(){
-    amplifier_state.jpa_pump_on = !amplifier_state.jpa_pump_on;
-    saveState();
-    console.log(JSON.stringify(amplifier_state));
-    sendData(amplifier_state);    
-}
-
-document.getElementById("jpa-flux-button").onclick = function(){
-    amplifier_state.jpa_flux_bias_on = !amplifier_state.jpa_flux_bias_on;
-    saveState();
-    console.log(JSON.stringify(amplifier_state));
-    sendData(amplifier_state);    
-}
-
-document.getElementById("twpa-pump-button").onclick = function(){
-    amplifier_state.twpa_pump_on = !amplifier_state.twpa_pump_on;
-    saveState();
-    console.log(JSON.stringify(amplifier_state));
-    sendData(amplifier_state);    
-}
-
 
 function mouseWheel(event) {
     if(knobIndex >= 0){
@@ -254,8 +199,6 @@ function mouseWheel(event) {
         amplifier_state.jpa_flux_bias = jpa_flux_bias;
         amplifier_state.twpa_pump_frequency = twpa_pump_frequency;
         amplifier_state.twpa_pump_power = twpa_pump_power;
-        
-        
         saveState();
         console.log(JSON.stringify(amplifier_state));
         sendData(amplifier_state);

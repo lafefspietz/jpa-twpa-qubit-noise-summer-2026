@@ -1,7 +1,7 @@
 {
     "vna_idn": "Rohde&Schwarz,ZVA24-2Port,1145111024100131,3.30",
     "vna_source_power": 0,
-    "vna_if_bandwidth": 2000,
+    "vna_if_bandwidth": 5000,
     "vna_start_frequency": 6000000000,
     "vna_stop_frequency": 7000000000,
     "vna_number_of_points": 1001,
@@ -22,18 +22,38 @@
     "s_parameter_select": "s24",
     "measurement_select": "vna",
     "twpa_pump_select": "twpa_pump_1",
-    "programmable_attenuator": 30,
-    "temperature": 46.01739,
-    "date": "19-08-2026",
-    "time": "12:40:05",
-    "timestamp": 1787164805,
+    "programmable_attenuator": 37,
+    "temperature": "0.01",
+    "date": "27-08-2026",
+    "time": "14:05:34",
+    "timestamp": 1787861134,
     "data_repository": "https://github.com/lafefspietz/jpa-twpa-qubit-noise-summer-2026/",
     "data_url_base": "https://raw.githubusercontent.com/lafefspietz/jpa-twpa-qubit-noise-summer-2026/refs/heads/main/",
     "take_trace": true,
-    "amplifier": {},
-    "qubit":{},
-    "noise":{},
+    "jpa1": {
+        "pump_power": -30,
+        "pump_frequency": 13000000000,
+        "flux_bias": 0.75,
+        "volts_per_phi0": 1
+    },
+    "twpa": {
+        "pump_power": -30,
+        "pump_frequency": 8750000000
+    },
+    "noise_source": {
+        "voltage": 0
+    },
     "timezone": "Mountain Daylight Time",
-    "file_name": "1787164805-state.json",
-    "state_file_url": "https://raw.githubusercontent.com/lafefspietz/jpa-twpa-qubit-noise-summer-2026/refs/heads/main/19-08-2026/1787164805-state.json"
+    "file_name": "1787861134-state.json",
+    "state_file_url": "https://raw.githubusercontent.com/lafefspietz/jpa-twpa-qubit-noise-summer-2026/refs/heads/main/27-08-2026/1787861134-state.json",
+    "amplifier": {
+        "jpa_pump_frequency": 13069000000,
+        "jpa_pump_power": -3.97,
+        "jpa_flux_bias": -0.03,
+        "twpa_pump_frequency": 8750000000,
+        "twpa_pump_power": -39.5,
+        "jpa_pump_on": false,
+        "jpa_flux_bias_on": false,
+        "twpa_pump_on": false
+    }
 }

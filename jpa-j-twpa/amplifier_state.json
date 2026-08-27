@@ -1,7 +1,10 @@
 {
-    "jpa_pump_frequency": 12948000000,
-    "jpa_pump_power": 5.3100000000000005,
-    "jpa_flux_bias": 0.6120000000000001,
-    "twpa_pump_frequency": 8875000000,
-    "twpa_pump_power": -26.95
+    "jpa_pump_frequency": 13069000000,
+    "jpa_pump_power": -3.9900000000000033,
+    "jpa_flux_bias": 0.25,
+    "twpa_pump_frequency": 8750000000,
+    "twpa_pump_power": -40,
+    "jpa_pump_on": false,
+    "jpa_flux_bias_on": false,
+    "twpa_pump_on": false
 }

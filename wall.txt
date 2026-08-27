@@ -1,10 +1,3 @@
-plan: 
-  add control of vna and spectrum analyzer settings, get those working✅
-  get web instrument to push plots into the web interface
-  get web instrument to save data and plots and put them into the README with temperature, date, time, other basic metadata
+add on/off buttons for pumps and flux bias to control panel, make sure they work, test them
+add VNA and SPA display to main instrument panel with save button
 
-
-  add taking a trace from one or the other and saving it in a folder the correct way, with format in the readme
-  add JPA control panel and TWPA control panel as one integrated control
-  see if i can get the JPA to work in current broken state of switches
-  see if i can get the noise to work in current broken state of switches

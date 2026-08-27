@@ -1,1 +1,4 @@
-jpa j twpa
+need to get the buttons working for on/off
+round all the values so there's no 0.7070000000000001 type nonsense
+add plots with save plot button
+need to merge with main instrument, control VNA and spectrum analyzer, add the 

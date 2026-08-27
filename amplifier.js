@@ -249,6 +249,11 @@ function mouseWheel(event) {
         }        
         
 
+        jpa_pump_power = Math.round(jpa_pump_power * 1000) / 1000;
+        twpa_pump_power = Math.round(twpa_pump_power * 1000) / 1000;
+        jpa_flux_bias = Math.round(jpa_flux_bias * 1000) / 1000;
+
+
         amplifier_state.jpa_pump_frequency = jpa_pump_frequency;
         amplifier_state.jpa_pump_power = jpa_pump_power;
         amplifier_state.jpa_flux_bias = jpa_flux_bias;
