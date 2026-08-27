@@ -22,11 +22,11 @@
     "s_parameter_select": "s24",
     "measurement_select": "vna",
     "twpa_pump_select": "twpa_pump_1",
-    "programmable_attenuator": 30,
+    "programmable_attenuator": 37,
     "temperature": "0.01",
     "date": "27-08-2026",
-    "time": "14:35:55",
-    "timestamp": 1787862955,
+    "time": "14:28:41",
+    "timestamp": 1787862521,
     "data_repository": "https://github.com/lafefspietz/jpa-twpa-qubit-noise-summer-2026/",
     "data_url_base": "https://raw.githubusercontent.com/lafefspietz/jpa-twpa-qubit-noise-summer-2026/refs/heads/main/",
     "take_trace": true,
@@ -44,16 +44,16 @@
         "voltage": 0
     },
     "timezone": "Mountain Daylight Time",
-    "file_name": "1787862955-state.json",
-    "state_file_url": "https://raw.githubusercontent.com/lafefspietz/jpa-twpa-qubit-noise-summer-2026/refs/heads/main/27-08-2026/1787862955-state.json",
+    "file_name": "1787862521-state.json",
+    "state_file_url": "https://raw.githubusercontent.com/lafefspietz/jpa-twpa-qubit-noise-summer-2026/refs/heads/main/27-08-2026/1787862521-state.json",
     "amplifier": {
         "jpa_pump_frequency": 12987000000,
-        "jpa_pump_power": -6.97,
-        "jpa_flux_bias": 0.54,
+        "jpa_pump_power": -2.87,
+        "jpa_flux_bias": 0.69,
         "twpa_pump_frequency": 8750000000,
-        "twpa_pump_power": -27.2,
-        "jpa_pump_on": true,
-        "jpa_flux_bias_on": true,
-        "twpa_pump_on": true
+        "twpa_pump_power": -39.5,
+        "jpa_pump_on": false,
+        "jpa_flux_bias_on": false,
+        "twpa_pump_on": false
     }
 }
