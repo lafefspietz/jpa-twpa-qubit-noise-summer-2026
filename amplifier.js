@@ -13,7 +13,7 @@ jpa_pump_frequency_minimum = 12.0e9;
 jpa_pump_frequency_0 = 13.123e9;
 jpa_pump_frequency_maximum = 14.0e9;
 
-jpa_pump_power_minimum = -30;//dBm
+jpa_pump_power_minimum = -50;//dBm
 jpa_pump_power_0 = 0;//dBm
 jpa_pump_power_maximum = 6;//dBm
 

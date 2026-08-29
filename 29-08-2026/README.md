@@ -1,0 +1,16 @@
+#  29-08-2026 Plots
+
+![](1788022632-noise-scan-plot.png)
+![](1788022750-noise-scan-plot.png)
+![](1788023044-noise-scan-plot.png)
+![](1788023203-noise-scan-plot.png)
+![](1788023276-noise-scan-plot.png)
+![](1788023339-noise-scan-plot.png)
+![](1788023369-noise-scan-plot.png)
+![](1788023399-noise-scan-plot.png)
+![](1788023425-noise-scan-plot.png)
+![](1788023457-noise-scan-plot.png)
+![](1788023484-noise-scan-plot.png)
+![](1788023541-noise-scan-plot.png)
+![](1788023577-noise-scan-plot.png)
+![](1788023629-noise-scan-plot.png)
