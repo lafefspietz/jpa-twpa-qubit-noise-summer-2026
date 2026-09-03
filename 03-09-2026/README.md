@@ -30,3 +30,22 @@
 ![](1788445966-arb-sweep-scan-plot.png)
 ![](1788446129-arb-sweep-scan-plot.png)
 ![](1788446304-arb-sweep-scan-plot.png)
+![](1788446853-arb-sweep-scan-plot.png)
+![](1788447123-arb-sweep-scan-plot.png)
+
+### [1788447123-arb-sweep-noise.json](1788447123-arb-sweep-noise.json)
+![](1788447327-arb-sweep-scan-plot.png)
+
+### [1788447327-arb-sweep-noise.json](1788447327-arb-sweep-noise.json)
+
+![](1788447592-arb-sweep-scan-plot.png)
+
+### [1788447592-arb-sweep-noise.json](1788447592-arb-sweep-noise.json)
+
+![](1788447716-arb-sweep-scan-plot.png)
+
+### [1788447716-arb-sweep-noise.json](1788447716-arb-sweep-noise.json)
+
+![](1788448117-arb-sweep-scan-plot.png)
+
+### [1788448117-arb-sweep-noise.json](1788448117-arb-sweep-noise.json)
