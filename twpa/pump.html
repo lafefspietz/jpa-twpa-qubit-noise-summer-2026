@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/9wAA7usAAFVRAAC7uwAA//cAAPrfAAD63wAA+t8AAPjfAAD7jwAA+98AAPvfAAD71wAA++8AAP//AAD//wAA" rel="icon" type="image/x-icon">
+    <title>twpa</title>   
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.7.0/lib/p5.min.js"></script>
+</head>
+<body> 
+    <div id="p5-canvas-container"></div>
+<style>
+    body{
+        overflow:hidden;
+    }
+    #p5-canvas-container{
+        position:absolute;
+        left:0px;
+        top:0px;
+        width:100%;
+        height:100%;
+    }
+</style>
+<script>
+tpwa_pump_power_start = -30;//dBm
+tpwa_pump_power_max = -10;//dBm
+tpwa_pump_power_min = -50;//dBm
+twpa_pump_frequency_start = 8.750;//Ghz
+twpa_pump_frequency_min = 7.75;
+twpa_pump_frequency_max = 9.75;
+
+twpa_pump_power = tpwa_pump_power_start;
+twpa_pump_frequency = twpa_pump_frequency_start;
+
+const debug_mode = false;//set to false to send data over socket
+let socket = null;
+
+if (!debug_mode) {
+  socket = new WebSocket('ws://localhost:8081');
+}
+
+knobs = [];
+knobPayload = {};
+
+f0   = twpa_pump_frequency_start*1e9;//Hz
+fmin = twpa_pump_frequency_min*1e9;
+fmax = twpa_pump_frequency_max*1e9;
+
+p0 = tpwa_pump_power_start;
+pmax = tpwa_pump_power_max;
+pmin = tpwa_pump_power_min;
+pump_frequency = f0;
+pump_power = p0;//dBm
+
+knobs = [
+    {
+        "x":-0.9,
+        "y":0.4,
+        "r":0.3,
+        "variable":"100 MHz",
+        "value":0,
+        "N":24
+    },{
+        "x":0,
+        "y":0.4,
+        "r":0.3,
+        "variable":"10 MHz",
+        "value":0,
+        "N":24
+    },{
+        "x":0.9,
+        "y":0.4,
+        "r":0.3,
+        "variable":"1 MHz",
+        "value":0,
+        "N":24
+    },{
+        "x":-0.9,
+        "y":-0.5,
+        "r":0.3,
+        "variable":"1 dBm",
+        "value":0,
+        "N":24
+    },{
+        "x":0,
+        "y":-0.5,
+        "r":0.3,
+        "variable":"0.1 dBm",
+        "value":0,
+        "N":24
+    },{
+        "x":0.9,
+        "y":-0.5,
+        "r":0.3,
+        "variable":"0.01 dBm",
+        "value":0,
+        "N":24
+    }
+];
+
+for(let index = 0;index < knobs.length;index++){
+    knobPayload[knobs[index].variable] = knobs[index].value;
+}
+ 
+
+knobIndex = -1;
+
+function setup() {
+     
+    let container = document.getElementById('p5-canvas-container');
+    let w = container.clientWidth;
+    let h = container.clientHeight;
+    let canvas = createCanvas(w, h);
+    canvas.parent('p5-canvas-container');
+    unit =  0.5*Math.min(innerWidth, innerHeight);
+    x0 = 0.5*width;
+    y0 = 0.5*height;
+    
+}
+
+function draw() {
+    clear();
+    stroke(0);
+    noFill();
+    knobIndex = -1;
+    textFont('Courier New');
+    textSize(32);
+    
+    for(let index = 0;index < knobs.length;index++){
+        strokeWeight(6);
+
+        d = Math.sqrt((mouseX - (x0 + unit*knobs[index].x))**2+ (mouseY - (y0 - unit*knobs[index].y))**2);
+        if(d < unit*knobs[index].r){
+            fill("#00000080");
+            knobIndex = index;
+        } else{
+            noFill();
+        }
+        circle(x0 + unit*knobs[index].x,y0 - unit*knobs[index].y,2*unit*knobs[index].r);
+        
+        line(x0 + unit*knobs[index].x,y0 - unit*knobs[index].y,x0 + unit*knobs[index].x + knobs[index].r*unit*Math.sin(knobs[index].value*2*Math.PI/knobs[index].N),y0 - unit*knobs[index].y - knobs[index].r*unit*Math.cos(knobs[index].value*2*Math.PI/knobs[index].N));
+        fill(0);
+        strokeWeight(1);
+        textString = knobs[index].value.toString() + "X" + knobs[index].variable;
+
+        text(textString,x0 + unit*knobs[index].x - 32*0.295*textString.length,y0 - unit*knobs[index].y - knobs[index].r*unit - 10);
+        if(knobIndex >= 0){
+            cursor(HAND);
+        } else{
+            cursor(ARROW);
+        }
+    }    
+    text("f = " + (pump_frequency/1e9).toFixed(3) + " GHz",10,40);
+    text("p = " + (pump_power).toFixed(3) + " dBm",10,0.5*height);
+    textFont('Arial');
+    textSize(50);
+    text("J-TWPA Pump Control",0.5*width-250,40);
+    
+}
+
+function mouseWheel(event) {
+    if(knobIndex >= 0){
+        if(event.delta < 0){ 
+            knobs[knobIndex].value++;
+        }
+        else{
+            knobs[knobIndex].value--;
+        }
+        pump_frequency = f0 + 100e6*knobs[0].value + 10e6*knobs[1].value + 1e6*knobs[2].value;
+        pump_power = p0 + knobs[3].value + 0.1*knobs[4].value + 0.01*knobs[5].value;
+        if(pump_frequency > fmax){
+            pump_frequency = fmax;
+        }        
+        if(pump_frequency < fmin){
+            pump_frequency = fmin;
+        }        
+        if(pump_power > pmax){
+            pump_power = pmax;
+        }        
+        if(pump_power < pmin){
+            pump_power = pmin;
+        }        
+
+        knobPayload.twpa_pump_frequency = pump_frequency;
+        knobPayload.twpa_pump_power = pump_power;
+        knobPayload[knobs[knobIndex].variable] = knobs[knobIndex].value;
+        console.log(JSON.stringify(knobPayload));
+        sendData(knobPayload);
+    }
+}
+
+function sendData(instrumentData) {
+  if (!debug_mode && socket) {
+    socket.send(JSON.stringify(instrumentData));
+  } else {
+    console.log("Debug Mode (No Socket Connection):", instrumentData);
+  }
+}
+
+    
+</script>
+</body>
+</html>
+
+
+ 
+ 
