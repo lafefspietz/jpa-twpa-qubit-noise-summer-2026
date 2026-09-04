@@ -77,5 +77,6 @@ if __name__ == "__main__":
     try:
         asyncio.run(main_loop(state, previous_state))
     except (KeyboardInterrupt, asyncio.CancelledError):
+        channel_b.enable = False
         print("\nServer shutdown complete.")
 
